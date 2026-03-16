@@ -98,6 +98,15 @@ def filter_by_status(status_value):
 
     conn.close()
 
+# Prepare database - Matthew Ingram
+connection = get_connection()
+with open("database/schema.sql", "r") as schema:
+    setup_string = schema.read()
+cursor = connection.cursor()
+cursor.executescript(setup_string)
+connection.commit()
+connection.close()
+# End of my addition - Matthew Ingram
 
 if __name__ == "__main__":
     print("1. View requests")
